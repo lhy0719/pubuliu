@@ -27,7 +27,7 @@
             box-shadow: 0 0 5px #ccc;
         }
         .pic img{
-            width: 165px;
+            width: 185px;
             height: auto;
         }
     </style>
@@ -43,6 +43,29 @@
             var boxW = boxes[0].offsetWidth;
             var cols = Math.floor(document.documentElement.clientWidth/boxW);
             main.style.cssText = 'width:'+boxW*cols+'px;margin:0 auto';
+
+            var hArr = [];
+            for(var i=0,len = boxes.length;i<len;i++){
+                if (i<cols) {
+                    hArr.push(boxes[i].offsetHeight)
+                }else {
+                    var minH = Math.min.apply(null,hArr);
+                    var index = getMinhIndex(hArr,minH);
+                    boxes[i].style.position = 'absolute';
+                    boxes[i].style.top = minH + 'px';
+                    boxes[i].style.left = boxW*index +'px';
+                    hArr[index] += boxes[i].offsetHeight;
+                    console.log(hArr[index]);
+                }
+            }
+            console.log(hArr)
+        };
+        var getMinhIndex = function(arr,val){
+            for(var i in arr){
+                if (arr[i]=val){
+                    return i;
+                }
+            }
         };
         var getByClass = function (parent,clsName) {
             var boxArr =[];
@@ -118,7 +141,31 @@
                 <img src="images/20160410%20056.JPG">
             </div>
         </div>
-
+        <div class="box">
+            <div class="pic">
+                <img src="images/20160410%20078.JPG">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/20160410%20079.JPG">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/20160410%20082.JPG">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/20160410%20083.JPG">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/20160410%20084.JPG">
+            </div>
+        </div>
     </div>
 </body>
 </html>
